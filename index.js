@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const axios = require('axios')
-const server = "https://piso-de-mercado.herokuapp.com"
+const server = "https://piso-de-mercado-restful.herokuapp.com"
 // const server = "http://localhost:3000"
 
 const callToServer = async () => {
