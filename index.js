@@ -30,14 +30,14 @@ const checkActive = () => {
             const weekDay = (new Date(timestampToLocale)).getDay()
             const activeDay = weekDay>0 && weekDay<6 ? true : false
             const localeHour = parseInt(dateNowString.split(' ')[1])
-            const activeHour = localeHour>9 && localeHour<19 ? true : false
+            const activeHour = localeHour>9 && localeHour<18 ? true : false
             const nowActive = activeDay && activeHour ? true : false
             console.log(`\nHoy es ${dateNowString}, día ${weekDay} de la semana, locale hour: ${localeHour}`)
             console.log("Hoy es activo:", activeDay, ", hora activa:", activeHour)
             console.log("Conclusión", nowActive)
             if (nowActive) callToServer()
         } catch (error) {console.log(error)} finally {checkActive()}
-    }, 1000*60*1)
+    }, 1000*60*30)
 }
 
 app.use(express.json())
