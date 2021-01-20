@@ -1,3 +1,5 @@
+'use strict'
+
 const express = require('express')
 const app = express()
 const axios = require('axios')
@@ -30,14 +32,25 @@ const checkActive = () => {
             const weekDay = (new Date(timestampToLocale)).getDay()
             const activeDay = weekDay>0 && weekDay<6 ? true : false
             const localeHour = parseInt(dateNowString.split(' ')[1])
-            const activeHour = localeHour>9 && localeHour<18 ? true : false
+            
+            let activeHour
+            if (dateNowString.includes('PM')) {
+                console.log("Activado en PM")
+                activeHour = (localeHour<6 && localeHour!==0) || localeHour===12  ? true : false
+            } else if (dateNowString.includes('AM')) {
+                console.log("Activado en AM")
+                activeHour = localeHour===10 || localeHour===11 ? true : false
+            } else {
+                activeHour = localeHour>9 && localeHour<18 ? true : false
+            }
+
             const nowActive = activeDay && activeHour ? true : false
             console.log(`\nHoy es ${dateNowString}, día ${weekDay} de la semana, locale hour: ${localeHour}`)
             console.log("Hoy es activo:", activeDay, ", hora activa:", activeHour)
             console.log("Conclusión", nowActive)
             if (nowActive) callToServer()
         } catch (error) {console.log(error)} finally {checkActive()}
-    }, 1000*60*30)
+    }, 1000*60*1)
 }
 
 app.use(express.json())
