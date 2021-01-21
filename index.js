@@ -50,7 +50,7 @@ const checkActive = () => {
             console.log("Conclusión", nowActive)
             if (nowActive) callToServer()
         } catch (error) {console.log(error)} finally {checkActive()}
-    }, 1000*60*1)
+    }, 1000*60*15)
 }
 
 app.use(express.json())
