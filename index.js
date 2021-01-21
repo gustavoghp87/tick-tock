@@ -23,7 +23,7 @@ const callToServer = async () => {
 const checkActive = () => {
     console.log("Check active")
     setTimeout(() => {
-        console.log("Check active run")
+        console.log("\nCheck active run")
         try {
             const timestampNow = Date.now()
             const dateNow = new Date(timestampNow).toLocaleString("es-AR", {timeZone: "America/Buenos_Aires"})
@@ -45,7 +45,7 @@ const checkActive = () => {
             }
 
             const nowActive = activeDay && activeHour ? true : false
-            console.log(`\nHoy es ${dateNowString}, día ${weekDay} de la semana, locale hour: ${localeHour}`)
+            console.log(`Hoy es ${dateNowString}, día ${weekDay} de la semana, locale hour: ${localeHour}`)
             console.log("Hoy es activo:", activeDay, ", hora activa:", activeHour)
             console.log("Conclusión", nowActive)
             if (nowActive) callToServer()
